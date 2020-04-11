@@ -50,16 +50,13 @@ void loop()
   if (currentState != lastState) {
     if(buttonPressed)
     {
-      double color = 0.0;
-      if (pushCount <= 200) {
-        color = 0.005 * pushCount;
-        pushCount++;
-      } else {
-        color = 0.0;
-        pushCount = 0;
-      }
+      int colorSeed = pushCount % 20;
+      double color = 0.05 * colorSeed;
 
-      digitalWrite(pinLed, HIGH);
+      pushCount++;
+      pushCount = pushCount % 10000;
+
+      //digitalWrite(pinLed, HIGH);
       leds.setColorHSB(0, color, 1.0, 0.5);
 
       int countCopy = pushCount;
@@ -74,7 +71,7 @@ void loop()
     }
     else
     {
-      digitalWrite(pinLed, LOW);
+      //digitalWrite(pinLed, LOW);
       leds.setColorHSB(0, 0.0, 0.0, 0.0);
     }
 

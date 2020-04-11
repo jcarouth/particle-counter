@@ -22,7 +22,7 @@ int pinLed = D7;
 ChainableLED leds(A4, A5, 1);
 TM1637 tm1637(D4, D5);
 
-int pushCount = 0;
+int pushCount = 9990;
 int currentState = 0;
 int lastState = 0;
 
@@ -37,9 +37,9 @@ void setup()
   tm1637.init();
   tm1637.set(BRIGHT_TYPICAL);
   tm1637.point(POINT_OFF);
-  tm1637.display(0, 0);
-  tm1637.display(1, 0);
-  tm1637.display(2, 0);
+  tm1637.display(0, 9);
+  tm1637.display(1, 9);
+  tm1637.display(2, 9);
   tm1637.display(3, 0);
 }
 
@@ -59,16 +59,13 @@ void loop()
   if (currentState != lastState) {
     if(buttonPressed)
     {
-      double color = 0.0;
-      if (pushCount <= 200) {
-        color = 0.005 * pushCount;
-        pushCount++;
-      } else {
-        color = 0.0;
-        pushCount = 0;
-      }
+      int colorSeed = pushCount % 20;
+      double color = 0.05 * colorSeed;
 
-      digitalWrite(pinLed, HIGH);
+      pushCount++;
+      pushCount = pushCount % 10000;
+
+      //digitalWrite(pinLed, HIGH);
       leds.setColorHSB(0, color, 1.0, 0.5);
 
       int countCopy = pushCount;
@@ -83,7 +80,7 @@ void loop()
     }
     else
     {
-      digitalWrite(pinLed, LOW);
+      //digitalWrite(pinLed, LOW);
       leds.setColorHSB(0, 0.0, 0.0, 0.0);
     }
 
