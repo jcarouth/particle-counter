@@ -1,8 +1,13 @@
 /*
  * Project particle-counter
  * Description:
+ *  Firmware for a Particle Argon to interact with a button, Grove Chainable LED, and
+ *  TM1637 4-Digit Display from Grove. The button is a clicker which indicates press on
+ *  the LED cycling through hues for each press and incrementing the count available on
+ *  the 4-Digit Display.
+ * 
  * Author:
- * Date:
+ *  Greyson and Jeff Carouth
  */
 #include "Grove_ChainableLED.h"
 #include "Grove_4Digit_Display.h"
