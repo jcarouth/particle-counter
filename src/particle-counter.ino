@@ -8,7 +8,6 @@
 #include "Grove_4Digit_Display.h"
 
 int pinButton = D2;
-int pinLed = D7;
 
 ChainableLED leds(A4, A5, 1);
 TM1637 tm1637(D4, D5);
@@ -20,7 +19,6 @@ int lastState = 0;
 void setup()
 {
   pinMode(pinButton, INPUT);
-  pinMode(pinLed, OUTPUT);
 
   leds.init();
   leds.setColorHSB(0, 0.0, 0.0, 0.0);
@@ -56,7 +54,6 @@ void loop()
       pushCount++;
       pushCount = pushCount % 10000;
 
-      //digitalWrite(pinLed, HIGH);
       leds.setColorHSB(0, color, 1.0, 0.5);
 
       int countCopy = pushCount;
@@ -71,7 +68,6 @@ void loop()
     }
     else
     {
-      //digitalWrite(pinLed, LOW);
       leds.setColorHSB(0, 0.0, 0.0, 0.0);
     }
 
